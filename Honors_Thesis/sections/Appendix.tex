@@ -1,0 +1,190 @@
+\chapter*{Appendix}
+
+Let R denote the following Matrix Riccati equation
+\begin{equation}
+\tag{R}
+    Y' = Y\cdot A(t) \cdot Y + C(t)\cdot Y + Y\cdot B(t) + D(t)
+\end{equation}
+where $Y \in \mathbb{R}^{ n \times m}$, $D(t) \in \mathbb{R}^{ n \times m}$, $C(t) \in \mathbb{R}^{ n \times n}$, $B(t) \in \mathbb{R}^{m \times m}$ and $A(t) \in \mathbb{R}^{ m \times n}$.
+
+\begin{namedtheorem}[Theorem 3.3.1]
+Assume $m=n$. If $B(t) = 0$ and if $A(t)$ is invertible, then (R) can be converted to the following second order matrix differential equation:
+\begin{equation}
+\tag{E1}
+    u'' - (ACA^{-1} + A'A^{-1})\cdot u' + AD \cdot u = 0
+\end{equation}
+by using the change of variables $Y = - A^{-1} \cdot u' \cdot u^{-1}$, where $u$ is invertible.
+\end{namedtheorem}
+
+\begin{proof}
+\begin{equation*}
+    Y' = -(A^{-1})' \cdot u' \cdot u^{-1} - A^{-1} \cdot u'' \cdot u^{-1} - A^{-1} \cdot u' \cdot (u^{-1})'
+\end{equation*}
+Recall $(A^{-1})' = - A^{-1} \cdot A' \cdot A^{-1}$. Then, 
+\begin{equation*}
+    \begin{split}
+        Y' &= A^{-1} \cdot A' \cdot A^{-1} \cdot u' \cdot u^{-1} - A^{-1} \cdot u'' \cdot u^{-1} + A^{-1} \cdot u' \cdot u^{-1} \cdot u' \cdot u^{-1}\\
+        &= A^{-1} \cdot u' \cdot u^{-1} \cdot A \cdot A^{-1} \cdot u' \cdot u^{-1} + A^{-1} \cdot u' \cdot u^{-1} \cdot B - C \cdot A^{-1} \cdot u' \cdot u^{-1} + D  
+    \end{split}
+\end{equation*}
+It follows that, since $B(t) = 0$
+\begin{equation*}
+    \begin{split}
+        Y' &= A^{-1} \cdot u' \cdot u^{-1} \cdot A \cdot A^{-1} \cdot u' \cdot u^{-1} - C \cdot A^{-1} \cdot u' \cdot u^{-1} + D
+    \end{split}
+\end{equation*}
+and so
+\begin{equation*}
+    \begin{split}
+        A^{-1} \cdot A' \cdot A^{-1} \cdot u' \cdot u^{-1} - A^{-1} \cdot u'' \cdot u^{-1} &= - C \cdot A^{-1} \cdot u' \cdot u^{-1} + D
+    \end{split}
+\end{equation*}
+by right multiplying by $u$ we get
+\begin{equation*}
+    \begin{split}
+        A^{-1} \cdot A' \cdot A^{-1} \cdot u' - A^{-1} \cdot u'' &= - C \cdot A^{-1} \cdot u' + D \cdot u
+    \end{split}
+\end{equation*}
+Then, left multiply by $A$
+\begin{equation*}
+    \begin{split}
+        A' \cdot A^{-1} \cdot u' &= - A \cdot C \cdot A^{-1} \cdot u' + A \cdot D \cdot u
+    \end{split}
+\end{equation*}
+which yields
+\begin{equation}
+\tag{E1}
+    \begin{split}
+        u'' - (A \cdot C \cdot A^{-1} + A' \cdot A^{-1}) \cdot u' + A \cdot D \cdot u &= 0
+    \end{split}
+\end{equation}
+\end{proof}
+
+\begin{namedtheorem}[Theorem 3.3.2]
+If $A \cdot C \cdot A^{-1} + A' \cdot A^{-1} = S$, where $S$ is a constant and diagonalizable, and $A \cdot D = -I$. Then, (E1) can be converted to the following equation
+\begin{equation}
+\tag{E2}
+    v'' - D_1 \cdot v' - Y = 0
+\end{equation}
+where $D_1$ denotes a diagonal matrix.
+\end{namedtheorem}
+\\
+\begin{proof}
+We know that $S$ is diagonalizable, thus we can rewrite it as $S = P \cdot D_1 \cdot P^{-1}$ where $P$ denotes the passage matrix $P^{-1} \cdot S = D_1 \cdot P^{-1}$. Next, let F denote the following equation
+    \begin{equation}
+    \tag{F}
+        \begin{split}
+            u'' - S \cdot u' - u = 0
+        \end{split}
+    \end{equation}
+By left multiplying both sides by $P^{-1}$ we get
+    \begin{equation*}
+        \begin{split}
+            P^{-1} \cdot u'' - P^{-1} \cdot S \cdot u' - P^{-1} \cdot u &= 0
+            \\
+            P^{-1} \cdot u'' - D_! \cdot P^{-1} \cdot u' - P^{-1} \cdot u &= 0
+        \end{split}
+    \end{equation*}
+Finally, let $v = P^{-1} \cdot u$ which yields
+    \begin{equation}
+    \tag{E2}
+        v'' - D_1 \cdot v' - v = 0
+    \end{equation}
+\end{proof}
+
+\underline{\textbf{Obtaining the system from E2}}
+
+Let $\alpha_i$ denote the eigenvalues of $S$, where $1 \leq i \leq n$. So, 
+\begin{equation*}
+    D_1 = \begin{pmatrix}
+      \alpha_1 & 0 & ... & 0\\
+       0 & \alpha_2 & ... & 0\\
+       . & . & . & .\\
+       0 & 0 & ... & \alpha_n
+    \end{pmatrix}. 
+\end{equation*}
+Next, let $V_{ij} \in \mathbb{R}$, $1 \leq i \leq n$ and $1 \leq j \leq n$ be the entries of $v$. 
+Then, E2 leads to the following equation E3
+\begin{equation}
+\tag{E3}
+    v_{ij}'' - \alpha_i \cdot v_{ij}' - v_{ij} = 0
+\end{equation}
+Now, notice that $v_{ii} = v_{ij}$ since $\alpha_i$ does not depend on $j$. Thus, we get equation E4
+\begin{equation}
+\tag{E4}
+    v_{ii}'' - \alpha_i \cdot v_{ii}' - v_{ii} = 0
+\end{equation}
+We can turn E4 into a system in the following manner. Let $ w_{ii} = v_{ii}'$ and $w_{ii}' = v_{ii}' = v_{ii} + \alpha_i \cdot w_{ii}$. Then, let $\Vec{x_{ii}} = [v_{ii}, w_{ii}]^T$ denote the vector of unknowns. We can rewrite this as the following system of equations:
+\begin{equation*}
+\tag{Sy1}
+    \frac{d \Vec{x_{ii}}}{dt} = \begin{pmatrix}
+      0 & 1\\
+      1 & \alpha_i\\
+    \end{pmatrix} \cdot x_{ii}
+\end{equation*}
+To find the solution of Sy1 we solve for $e^{-tM_{ii}} \cdot x_{ii} = x_0_{ii}$, where $M_{ii} = \big(\begin{smallmatrix}
+      0 & 1\\
+      1 & \alpha_i\\
+    \end{smallmatrix}\big)$ and $x_0_{ii}$ denotes the solution of the components of $\Vec{x_{ii}}$ for the initial condition. 
+
+\underline{\textbf{Computing $e^{-tM_{ii}}$}}
+
+Let $\lambda_i$ denote an eigenvalue of $M_{ii}$, given by $det(M_{ii} - \lambda_i \cdot I) = 0$. It follows that $\lambda_i = \frac{\alpha_i \mp \sqrt{\alpha_i^2 + 4}}{2}$. Hence, we have two eigenvalues $\lambda^1_i = \frac{\alpha_i + \sqrt{\alpha_i^2 + 4}}{2}$ and $\lambda^2_i = \frac{\alpha_i - \sqrt{\alpha_i^2 + 4}}{2}$, with corresponding eigenvectors $w^1_i = [1, \lambda^1_i]^T$ and $w^2_i = [1, \lambda^2_i]^T$. Then, the passage matrix $P$ is given by
+$\big(\begin{smallmatrix}
+1 & 1\\
+\lambda^1_i & \lambda^2_i
+\end{smallmatrix})\big$ \text{ and } $P^{-1}$ by $\frac{1}{\lambda^2_i - \lambda^1_i} \cdot \big(\begin{smallmatrix} \lambda^2_i & 1\\ -\lambda^1_i & 1 \end{smallmatrix})\big$. \text{ So, } $M_{ii} = P_i \cdot N_i \dcot P^{-1}_i$ where $N_i = \big(\begin{smallmatrix} \lambda^1_i & 0 \\ 
+0 & \lambda^2_i \end{smallmatrix})\big$ \text{ is a diagonal matrix. }
+
+If we multiply both sides by $-t$ and exponentiate we obtain the following equation
+\begin{equation}
+\tag{E5}
+    e^{-tM_{ii}} = P \cdot e^{-tN_i} \cdot P^{-1}
+\end{equation}
+which yields the solution
+\begin{equation*}
+    e^{-tM_{ii}} = \begin{pmatrix}
+    \frac{\lambda^2_i \cdot e^{-\lambda^1_i \cdot t} - \lambda^1_i \cdot e^{-\lambda^2_i \cdot t}}{\lambda^2_i - \lambda^1_i} & \frac{-e^{-\lambda^1_i \cdot t} + e^{-\lambda^2_i \cdot t}}{\lambda^2_i - \lambda^1_i}
+    \\
+    \frac{-e^{-\lambda^1_i \cdot t} + e^{-\lambda^2_i \cdot t}}{\lambda^2_i - \lambda^1_i} &  \frac{-\lambda^1_i \cdot e^{-\lambda^1_i \cdot t} + \lambda^2_i \cdot e^{-\lambda^2_i \cdot t}}{\lambda^2_i - \lambda^1_i}
+                    \end{pmatrix}
+\end{equation*}
+where $\lambda^1_i \cdot \lambda^2_i = -1$, $\lambda^1_i = \frac{\alpha_i + \sqrt{\alpha_i^2 + 4}}{2}$ and $\lambda^2_i = \frac{\alpha_i - \sqrt{\alpha_i^2 + 4}}{2}$.
+\\
+\\
+\underline{\textbf{Normalizing the solution vector}}
+\\
+For the input system to be valid, HHL requires that the solution vector $\Vec{b} = x_0_{ii} = [v_{ii}(0), w_{ii}(0)]^T$ is normalized such that $v_{ii}(0)^2 + w_{ii}(0)^2 = 1$.
+
+Let $v = P^{-1} \cdot u$, $v_{ij} = \sum_{k=1}^n P_{ik} \cdot u_{kj}$, $w' = v'_{ij}$, $P^{-1} = P_{ij}$ and $u = u_{ij}$. Then,
+\begin{equation*}
+    \begin{split}
+        v_{ij}(0) &= \sum_{k=1}^n P_{ik} \cdot u_{kj}(0)
+        \\
+        w_{ij}(0) &= v'_{ij}(0) = \sum_{k=1}^n P_{ik} \cdot u'_{kj}(0)
+    \end{split}
+\end{equation*}
+since $Y = -A^{-1} \cdot u' \cdot u^{-1}$ we know that 
+\begin{equation*}
+    \begin{split}
+        A(0) \cdot Y(0) \cdot u(0) + u'(0) &= 0\\
+        u'(0) &= -A(0) \cdot Y(0) \cdot u(0)
+    \end{split}
+\end{equation*}
+expressed as sums instead of matrix notation
+\begin{equation*}
+    \begin{split}
+        u'_{ki}(0) &= - \sum_{l=1}^n \sum_{s=1}^n a_{kl}(0) \cdot Y_{ls}(0) \cdot y_{si}(0)
+        \\
+        v_{ii}(0) &= \sum_{k=1}^n P_{ik} \cdot u_{ki}(0)
+        \\
+        w_{ii}(0) &= - \sum_{k=1}^n P_{ik} \sum_{l=1}^n \sum_{s=1}^n a_{kl}(0) \cdot Y_{ls}(0) \cdot y_{si}(0)
+    \end{split}
+\end{equation*}
+we know apply the normalization condition $v_{ii}^2 + w_{ii}^2 = \frac{1}{n}$, where $1 \leq i \leq n$, and obtain
+\begin{equation*}
+    (\sum_{k=1}^n P_{ik} \cdot u_{ki}(0))^2 + (\sum_{k=1}^n P_{ik} \sum_{l=1}^n \sum_{s=1}^n a_{kl}(0) \cdot Y_{ls}(0) \cdot y_{si}(0))^2 = \frac{1}{n}
+\end{equation*}
+where $P_{ij}$ denotes the entries of the inverse of the passage matrix of $S = A \cdot C \cdot A^{-1} + A' \cdot A^{-1}$.
+
+Putting everything together yields the solution $y(t) = -A^{-1}(T) \cdot u'(T) \cdot u^{-1}(T)$, which is the one plotted in the graphs under the results sections.

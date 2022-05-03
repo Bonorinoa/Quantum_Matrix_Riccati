@@ -1,0 +1,55 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{biblatex}
+\addbibresource{references.bib}
+\pagenumbering{arabic}
+\usepackage{amsmath}
+\usepackage{pseudocode}
+\linespread{2}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{named}
+\newtheorem*{namedtheorem}{Theorem}
+
+\title{
+{Quantum Solution To Matrix Riccati Differential Equation: Preliminary Studies}\\
+{\large Marist College}\\
+\vspace{5mm}
+{\includegraphics[scale=0.1]{images/Marist_College_Seal_-_Vector.svg_.png}}
+}
+\author{Augusto Gonzalez-Bonorino}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/Abstract}
+
+\chapter*{Acknowledgements}
+I want to thank Marist College School of Mathematics and Computer Science for offering one of the first courses in Quantum Computing, and Dr. Casimer DeCusatis for teaching it, in partnership with IBM last semester. The ideas presented in this thesis would have never become a reality if it wasn't for the early introduction to quantum computing the College provided. Also, I would like to thank Dr. Malick Ndiaye for his guidance on the mathematical proofs presented in this paper, his help made this project feasible in a semester. Lastly, I want to thank my parents for their continuous love and support, specially throughout these past few years at Marist College. They deserve as much credit for my achievements as I do.
+
+\tableofcontents
+
+\input{sections/introduction}
+
+\input{sections/Riccati equations}
+
+\input{sections/Quantum Computing in a Nutshell}
+
+\input{sections/Theory}
+
+\input{sections/Example}
+
+\input{sections/Results}
+
+\input{sections/Conclusion}
+
+\printbibliography
+
+\input{sections/Appendix}
+
+\end{document}

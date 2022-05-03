@@ -1,0 +1,48 @@
+In general, a Ricatti equation is any differential equation involving a constant, a linear and a quadratic term. We can “factor” this general definition into two common sub-categories: Scalar and Matrix form. A scalar Riccati differential equation is of the form:
+\begin{equation}
+    y'(t) = a(t)\cdot y(t)^2 + b(t)\cdot y(t) + c(t)
+\end{equation}
+where y(t) is the dependent variable, t stands for time and a,b and c are coefficients. Alternatively, we can extrapolate the scalar form into a Matrix equation of the following form:
+\begin{equation}
+    Y'(t) = Y(t)\cdot A(t) + D(t) \cdot Y(t) + Y(t) \cdot B(t) \cdot Y(t) + C(t)
+\end{equation}
+defined on the vector space of real m x n matrices, and where A,B,C and D are real matrix functions. Two recent findings about the nature of these equations will prove useful in our case study. First, it can be shown that any nonlinear Riccati scalar differential equation can always be converted to a second order linear ordinary differential equation (ODE). Furthermore, it follows that any nonlinear Matrix Riccati equation can be converted to a system of second order linear ODEs. We will leverage the latter in our case study to derive a Hermitian matrix suitable to serve as input to the HHL quantum algorithm for linear systems (details provided in following sections).
+
+Matrix Riccati Differential Equations have a vast array of applications throughout many different disciplines ranging from physics and electrical engineering, to game theory \cite{toivonen_chapter_2}. Among the most useful applications of this particular form of Riccati equations we find optimal control, random processes, stochastic realization theory and quantum mechanics. 
+
+Interestingly, Riccati equations possess special characteristics that have proven useful in unifying linear quantum mechanics and related fields of physics, such as thermodynamics and cosmology \cite{schuch_nonlinear_2014}. This suggests that solving Matrix Riccati equations is a suitable task for a quantum computer.
+
+Before considering quantum solutions though, a word of caution must be made. To date there is no general recipe to find solutions to Riccati equations. Nevertheless, if a particular solution is obtained then it is always possible to derive the general solution by applying a special change of variables that yields a Bernoulli equation \cite{dawkins_bernoulli_2018}. Consider the following to illustrate this technique:
+
+Consider the general Riccati equation
+\begin{equation}
+    y' = a(t)\cdot y^2 + b(t)\cdot y + c(t)
+\end{equation}
+where a(t), b(t) and c(t) are continuous functions of t.
+\\
+Now, suppose we have a particular solution $y_1$ to this general equation. Then, we can make the following change of variables
+\begin{equation}
+    y = y_1 + u
+\end{equation}
+and so we can re-write the general equation as
+\begin{equation}
+    \begin{split}
+        (y_1 + u)' & = a(t)\cdot (y_1 + u)^2 + b(t)\cdot (y_1 + u) + c(x)\\\\
+        y_1' + u' & = a(t)\cdot (y_1^2 + 2\cdot y_1 \cdot u + u^2) + b(t)\cdot y_1 + b(x)\cdot u + c(t)\\\\
+        y_1' + u' & = a(t)\cdot y_1^2 + a(t) \cdot 2\cdot y_1 \cdot u + a(t)\cdot u^2 + b(t)\cdot y_1 + b(t)\cdot u + c(t)
+    \end{split}
+\end{equation}
+It follows that, since $y_1$ is a particular solution to the Riccati equation we can cancel out $y_1'$, $a(t)\cdot y_1^2$, $b(t)\cdot y_1$ and $c(t)$. Hence, we obtain
+\begin{equation}
+    \begin{split}
+        u' & = a(t)\cdot u^2 + u\cdot [2\cdot a(t)\cdot y_1 + b(t)]\\
+        u' - u\cdot [2\cdot a(t)\cdot y_1 + b(t)] & = a(t)\cdot u^2\\
+        \frac{u'}{u^2} + [-2\cdot a(t)\cdot y_1 - b(t)]\cdot \frac{1}{u^2} &= a(t)
+    \end{split}
+\end{equation}
+Note that $u'$ is a Bernoulli equation and thus we can apply well-established methods to find the general solution. First, we make the substitution $z = u^{1 - m}$, where $m = 2$ in this case, to transform the Bernoulli into the following \underline{linear differential equation}:
+\begin{equation}
+    -z' + [-2\cdot a(t)\cdot y_1 - b(t)]\cdot z = a(t)
+\end{equation}
+These methods and ideas can be expanded to Matrix form, by translating our simple calculus to Matrix Calculus.
+
